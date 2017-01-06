@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<script type="text/javascript" src="javascript/d3.min.js"></script>
+
+<style>
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.barh div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+.horbar:hover {
+  fill:brown;
+}
+
+input {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  text-align: center;
+  font: 14px;
+  width: 60px;
+}
+
+.content td {
+  border:1px solid #E6E6E6;
+}
+
+html,body {
+  font: 12px verdana;
+  height: 100%;
+  margin:0;
+  padding: 0;
+}
+
+#header {
+  background: none repeat scroll 0 0 #2b79b9;
+  font-size: 1.5em;
+  color: #ffffff;
+  text-align: center;
+  border:0px;
+  position: relative;
+  z-index: 1500;
+  width:100%;
+  margin: 0;
+  height:100px;
+}
+
+#ChartList {
+  font-size: 1.0em;
+  color: #ffffff;
+}
+
+.ChartUL {
+  float: left;
+  list-style: outside none none;
+}
+
+.ChartUL li {
+  background: none repeat scroll 0 0 #2b79b9;
+  display: inline;
+  outline: medium none;
+  padding: 0 30px;
+}
+.ChartUL a {
+  color: #fff;
+  text-decoration: none;
+}
+.ChartUL a:hover {
+  text-decoration: underline;
+}
+
+ul.ChartUL li.selected a{
+  color:#FFFF00;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+
+}
+
+
+</style>
+<script>
+  function showHideDiv(divNumber){
+      if(divNumber == 1) {
+        document.getElementById("1").className="show";
+        document.getElementById("2").className="hide";
+        document.getElementById("3").className="hide";
+        document.getElementById("4").className="hide";
+        document.getElementById("pieLI").className="selected";
+        document.getElementById("lineLI").className="";
+        document.getElementById("barvLI").className="";
+        document.getElementById("barhLI").className="";
+      } else if(divNumber == 2) {
+        document.getElementById("1").className="hide";
+        document.getElementById("2").className="show";
+        document.getElementById("3").className="hide";
+        document.getElementById("4").className="hide";
+        document.getElementById("pieLI").className="";
+        document.getElementById("lineLI").className="";
+        document.getElementById("barvLI").className="selected";
+        document.getElementById("barhLI").className="";
+      } else if(divNumber == 3) {
+        document.getElementById("1").className="hide";
+        document.getElementById("2").className="hide";
+        document.getElementById("3").className="show";
+        document.getElementById("4").className="hide";
+        document.getElementById("pieLI").className="";
+        document.getElementById("lineLI").className="selected";
+        document.getElementById("barvLI").className="";
+        document.getElementById("barhLI").className="";
+      } else if(divNumber == 4) {
+        document.getElementById("1").className="hide";
+        document.getElementById("2").className="hide";
+        document.getElementById("3").className="hide";
+        document.getElementById("4").className="show";
+        document.getElementById("pieLI").className="";
+        document.getElementById("lineLI").className="";
+        document.getElementById("barvLI").className="";
+        document.getElementById("barhLI").className="selected";
+      }
+  }
+
+</script>
+<title>D3 JS Demo</title>
+</head>
+<body>
+  <div id="header">
+    <center><H3>CHARTS USING D3 JS - A DEMONSTRATION</H3></center>
+    <div id="ChartList">
+      <ul class="ChartUL">
+        <li id="pieLI" class="selected"><a href="#" onclick="showHideDiv(1)">Pie Chart</a></li>
+        <li id="lineLI"><a href="#" onclick="showHideDiv(3)">Line Chart</a></li>
+        <li id="barvLI"><a href="#" onclick="showHideDiv(2)">Bar Chart - Vertical</a></li>
+        <li id="barhLI"><a href="#" onclick="showHideDiv(4)">Bar Chart - Horizontal</a></li>
+    </div>
+  </div>
+
+  <div id="1">
+        <div id="pie" align="center" style="padding-top:30px;"></div>
+        <script type="text/javascript" src="javascript/d3Pie.js"></script>
+  </div>
+
+  <div id="2" class="hide">
+        <div id="barv" align="center" style="padding-top:30px;"></div>
+        <script type="text/javascript" src="javascript/d3Barv.js"></script>
+  </div>
+        
+  <div id="3" class="hide">
+    <div style="padding-top:20px;">
+      Number of Lines:
+      <input id="linecount" name="lines" value="1" onkeyup="render()"/>
+      Points per Line:
+      <input id="pointcount" name="points" value="10" onkeyup="render()"/>
+    </div>
+    <div id="line"  align="center" style="padding-top:30px;"></div>
+    <script type="text/javascript" src="javascript/d3Line.js"/></script>
+  </div>
+
+  <div id="4" class="hide">
+    <div class="barh" id="barh" valign="middle" align="left" style="padding-top:30px;padding-left:50px;"></div>
+    <script type="text/javascript" src="javascript/d3Barh.js"/></script>
+  </div>
+</body>
+</html>
